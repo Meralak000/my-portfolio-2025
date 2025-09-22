@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Block access to source maps and development files
+Disallow: /*.map$
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.vscode/
+
+# Allow important resources
+Allow: /icons/
+Allow: /og-image.svg
+Allow: /profile-picture.jpg
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.svg
+Allow: /*.mp4
+
+# Sitemap location
+Sitemap: https://mdmerajansari.dev/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

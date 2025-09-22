@@ -1,0 +1,444 @@
+/* Tailwind CSS will be loaded via CDN */
+
+*, *:after, *:before { 
+  box-sizing: border-box; 
+}
+
+:root {
+  --x: 0; 
+  --y: 0; 
+  --xp: 0; 
+  --yp: 0;
+  --hue: calc(250 + (var(--xp) * 50));
+  --bg: hsl(0 0% 10%);
+  --size: 100px;
+  --glow: radial-gradient(50% 50% at center, hsl(var(--hue) 80% 85%), hsl(var(--hue) 80% 70%), transparent) calc((var(--x) * 1px) - (var(--size) * 0.5)) calc((var(--y) * 1px) - (var(--size) * 0.5)) / var(--size) var(--size) no-repeat fixed;
+  --sway: 0px;
+}
+
+@keyframes growBar {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+body { 
+  background-color: #f0f2f5; 
+  min-height: 100vh; 
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body:not(.touch-device) {
+  cursor: none;
+}
+
+a, button, .flip-card, .project-card, .profile-image-container {
+  cursor: none;
+}
+
+.touch-device a, .touch-device button, .touch-device .flip-card, .touch-device .project-card, .touch-device .profile-image-container {
+  cursor: pointer;
+}
+
+.dark body {
+  background-color: #111;
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 5rem; /* offset for fixed header */
+}
+
+/* Reduce bounce-chain and improve scroll feel */
+body {
+  overscroll-behavior-y: contain;
+}
+
+/* Custom Cursor Styles - Ultra Optimized */
+.cursor-dot {
+  position: fixed; 
+  top: -3px; 
+  left: -3px;
+  width: 6px; 
+  height: 6px;
+  background-color: #8b5cf6;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10002;
+  will-change: left, top;
+}
+
+.dark .cursor-dot {
+  background-color: #a78bfa;
+}
+
+.cursor-circle {
+  position: fixed; 
+  top: -15px; 
+  left: -15px;
+  width: 30px; 
+  height: 30px;
+  border: 2px solid #8b5cf6;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transition: width 0.15s ease, height 0.15s ease, border-color 0.15s ease;
+  will-change: left, top;
+}
+
+.dark .cursor-circle {
+  border-color: #a78bfa;
+}
+
+.cursor-circle.grow {
+  width: 50px;
+  height: 50px;
+  border-color: #ec4899;
+  top: -25px;
+  left: -25px;
+}
+
+.dark .cursor-circle.grow {
+  border-color: #f472b6;
+}
+
+/* Glowy Button Styles */
+.glowy-btn {
+  text-transform: uppercase; 
+  font-weight: bold; 
+  letter-spacing: 0.1ch;
+  border: 4px solid transparent;
+  background: linear-gradient(white, white) padding-box, var(--glow), linear-gradient(#e5e7eb, #e5e7eb) border-box;
+  background-size: 200% 200%, 200% 200%, 100% 100%;
+  transition: background-position 0.4s ease, transform 0.2s ease; 
+  touch-action: none; 
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  animation: none;
+}
+
+.dark .glowy-btn {
+  background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--glow), linear-gradient(black, black) border-box;
+  background-size: 200% 200%, 200% 200%, 100% 100%;
+}
+
+.glowy-btn::before {
+  content: ""; 
+  position: absolute; 
+  inset: 0;
+  box-shadow: 0 1px hsl(0 0% 0% / 0.1) inset; 
+  background: #ffffff; 
+  z-index: 2; 
+  border-radius: inherit;
+}
+
+.dark .glowy-btn::before {
+  box-shadow: 0 1px hsl(0 0% 100% / 0.15) inset; 
+  background: var(--bg);
+}
+
+.glowy-btn span {
+  color: black;
+  height: 100%; 
+  width: 100%; 
+  z-index: 2; 
+  position: relative; 
+  inset: 0; 
+  display: grid; 
+  place-content: center;
+}
+
+.dark .glowy-btn span {
+  background: var(--glow), black; 
+  -webkit-background-clip: text; 
+  background-clip: text; 
+  color: transparent;
+}
+
+:root:has(.glowy-btn:active) { 
+  --size: 300px; 
+}
+
+.glowy-btn::after {
+  content: ""; 
+  position: absolute; 
+  inset: -4px; 
+  filter: blur(20px);
+  border: 4px solid transparent; 
+  background: var(--glow);
+  background-size: 200% 200%;
+  border-radius: inherit; 
+  z-index: -1;
+  animation: none;
+}
+
+.glowy-btn:hover { transform: translateY(-1px); }
+.glowy-btn:active { transform: translateY(0); }
+
+/* Glow only on hover/focus */
+.glowy-btn:hover,
+.glowy-btn:focus-visible { animation: glow-pulse 2.4s ease-in-out infinite, glow-shift 6s linear infinite; }
+.glowy-btn:hover::after,
+.glowy-btn:focus-visible::after { animation: glow-pulse 2.4s ease-in-out infinite, glow-shift 6s linear infinite; }
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes glow-shift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glowy-btn, .glowy-btn::after { animation: none !important; background-position: 50% 50% !important; }
+}
+
+.glowy-btn[disabled] { cursor: not-allowed; opacity: 0.8; }
+.glowy-btn[disabled]::after { opacity: 0.5; }
+
+/* Flip Card Styles */
+.flip-card { 
+  background-color: transparent; 
+  width: 100%; 
+  height: 12rem; 
+  perspective: 1000px; 
+}
+
+.flip-card-inner { 
+  position: relative; 
+  width: 100%; 
+  height: 100%; 
+  text-align: center; 
+  transition: transform 0.8s; 
+  transform-style: preserve-3d; 
+}
+
+.flip-card:hover .flip-card-inner { 
+  transform: rotateY(180deg); 
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute; 
+  width: 100%; 
+  height: 100%; 
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+  padding: 1.5rem; 
+  border-radius: 1rem; 
+  transition: border-color 0.3s, background-color 0.3s;
+  overflow: hidden;
+}
+
+.flip-card-back { 
+  transform: rotateY(180deg); 
+}
+
+/* Shiny Effect */
+.flip-card-front::after,
+.flip-card-back::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.7s ease-in-out;
+}
+
+.flip-card:hover .flip-card-front::after,
+.flip-card:hover .flip-card-back::after {
+   left: 150%;
+}
+
+/* Button mobile adjustments */
+@media (max-width: 640px) {
+  .glowy-btn {
+    padding: 0.875rem 1.25rem;
+    border-radius: 0.75rem;
+  }
+  .glowy-btn span {
+    font-size: 0.95rem;
+  }
+}
+
+/* Image Modal Styles */
+.image-modal-overlay {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background-color: rgba(0,0,0,0.9);
+  backdrop-filter: blur(8px);
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.image-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 95vh;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-modal-overlay.open .image-modal-content {
+  transform: scale(1);
+}
+
+.image-modal-content img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  object-fit: contain;
+  display: block;
+}
+
+/* Timeline gradient line animation */
+.timeline-line {
+  /* Light mode: darker neutral for contrast */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.18));
+  background-size: auto;
+  animation: none;
+  mix-blend-mode: normal;
+  filter: none;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+/* Section transitions and dividers */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease, transform 600ms ease;
+}
+.section-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.12), transparent);
+}
+.dark .section-divider {
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+}
+
+/* Leaf Animation Styles (Light Mode) - Optimized */
+.leaf {
+  position: fixed;
+  top: -20px;
+  color: #22c55e;
+  animation: leaf-fall linear forwards;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+.leaf::before {
+  content: "\1F343";
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+@keyframes leaf-fall {
+  0% { 
+    transform: translate3d(0, -20px, 0) rotate(0deg); 
+    opacity: 1; 
+  }
+  25% {
+    transform: translate3d(-10px, 25vh, 0) rotate(90deg);
+  }
+  50% {
+    transform: translate3d(15px, 50vh, 0) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate3d(-5px, 75vh, 0) rotate(270deg);
+  }
+  100% { 
+    transform: translate3d(10px, 105vh, 0) rotate(360deg); 
+    opacity: 0; 
+  }
+}
+
+/* Dark mode: soft white line */
+.dark .timeline-line {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.4));
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* Falling Stars Animation Styles (Dark Mode Only) */
+.star {
+  position: fixed;
+  top: -20px;
+  color: #fff;
+  animation: star-fall 5s linear forwards;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+.star::before {
+  content: "\2605";
+  text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 50px #fff;
+}
+
+@keyframes star-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .star {
+    font-size: 8px;
+  }
+}

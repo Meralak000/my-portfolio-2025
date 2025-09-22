@@ -1,0 +1,91 @@
+<!-- Google Analytics 4 Configuration -->
+<!-- 
+  Replace 'GA_MEASUREMENT_ID' with your actual Google Analytics 4 measurement ID
+  Get your ID from: https://analytics.google.com/
+-->
+
+<!-- Google tag (gtag.js) -->
+<script async src=\"https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID\"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  gtag('config', 'GA_MEASUREMENT_ID', {
+    // Enhanced measurement for better SEO tracking
+    enhanced_measurement_settings: {
+      scrolls: true,
+      outbound_clicks: true,
+      site_search: false,
+      video_engagement: true,
+      file_downloads: true
+    },
+    // Custom parameters for portfolio tracking
+    custom_map: {
+      'dimension1': 'section_viewed',
+      'dimension2': 'project_clicked',
+      'dimension3': 'skill_category'
+    }
+  });
+  
+  // Track section views for SEO insights
+  function trackSectionView(sectionName) {
+    gtag('event', 'section_view', {
+      'section_name': sectionName,
+      'page_title': document.title
+    });
+  }
+  
+  // Track project interactions
+  function trackProjectClick(projectName) {
+    gtag('event', 'project_click', {
+      'project_name': projectName,
+      'event_category': 'engagement'
+    });
+  }
+  
+  // Track skill category views
+  function trackSkillView(skillCategory) {
+    gtag('event', 'skill_view', {
+      'skill_category': skillCategory,
+      'event_category': 'skills'
+    });
+  }
+  
+  // Track IEEE leadership content views
+  function trackIEEEContent() {
+    gtag('event', 'ieee_content_view', {
+      'content_type': 'leadership',
+      'event_category': 'professional'
+    });
+  }
+</script>
+
+<!-- 
+  SETUP INSTRUCTIONS:
+  
+  1. Create Google Analytics 4 account:
+     - Go to https://analytics.google.com/
+     - Create new property for mdmerajansari.dev
+     - Get your measurement ID (format: G-XXXXXXXXXX)
+  
+  2. Replace 'GA_MEASUREMENT_ID' with your actual ID
+  
+  3. Add this script to your index.html <head> section
+  
+  4. Verify setup:
+     - Visit your website
+     - Check Google Analytics Real-time reports
+     - Confirm data is being collected
+  
+  5. Set up Google Search Console:
+     - Go to https://search.google.com/search-console
+     - Add property for mdmerajansari.dev
+     - Verify ownership using HTML tag method
+     - Submit sitemap.xml
+  
+  6. Additional SEO Tools to Consider:
+     - Bing Webmaster Tools
+     - Yandex Webmaster
+     - LinkedIn Publishing Analytics
+-->

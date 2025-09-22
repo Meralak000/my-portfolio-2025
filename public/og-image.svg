@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1000" cy="-50" r="350" fill="url(#brand)" opacity="0.12"/>
+  <circle cx="200" cy="680" r="300" fill="url(#brand)" opacity="0.12"/>
+  <text x="80" y="200" fill="white" font-size="72" font-weight="800" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif">MD Meraj Ansari</text>
+  <text x="80" y="270" fill="#cbd5e1" font-size="34" font-weight="600" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif">Developer • ML/AI • Web • Projects & Experience</text>
+  <rect x="80" y="320" width="520" height="6" fill="url(#brand)" rx="3"/>
+  <text x="80" y="400" fill="#e5e7eb" font-size="28" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif">Explore projects, timeline, and certifications</text>
+</svg>
+
+
+
